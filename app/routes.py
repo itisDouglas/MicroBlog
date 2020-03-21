@@ -1,7 +1,7 @@
 #routes module holds the different URLs that the app implements
 #a bunch of view functions
 from app import app
-from flask import render_template, flash, redirect
+from flask import render_template, flash, redirect,url_for
 from app.forms import LoginForm
 """
     notice how the app instantiation occurs in the __init__.py file, not in the routes file. There is a high level of abstraction ocurring here. 
@@ -33,7 +33,7 @@ def login():
         flash('Login reuqested for user {}, remember_me={}'.format(
             form.username.data, form.remember_me.data
         ))
-        return redirect('/index')
+        return redirect(url_for('index'))
     return render_template('login.html', 
     title='Sign In',
     form=form)
