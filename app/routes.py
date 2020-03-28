@@ -76,3 +76,17 @@ def register():
     return render_template('register.html', title='Register', form=form)
 
 
+#this will handle user profile pages
+@app.route('/user/<username>')
+#this makes it so only logged in users can acess
+@login_required
+def user(username):
+    #try to load user from db using a query by username
+    user = User.query.filter_by(username=username).first_or_404()
+    #first_or_404 sends 404 result if there's no result back to client
+    posts = [
+        {'author': user, 'body': 'Test post #1'},
+        {'author':user, 'body': 'Test post #2'}
+    ]
+    return render_template('user.html', user=user, posts=posts)
+
