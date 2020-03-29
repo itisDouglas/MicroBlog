@@ -11,3 +11,10 @@ class Config(object):
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
         'sqlite:///' + os.path.join(basedir, 'app.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+    MAIL_SERVER = os.environ.get('MAIL_SERVER')#server
+    MAIL_PORT = int(os.environ.get('MAIL_PORT') or 25)#port 
+    MAIL_USE_TLS= os.environ.get('MAIL_USE_TLS') is not None #boolean flag
+    MAIL_USERNAME = os.environ.get('MAIL_USERNAME')#optional username
+    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')#optional password
+    ADMINS=['dougcueva@gmail.com']
